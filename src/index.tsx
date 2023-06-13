@@ -1,19 +1,27 @@
-import React from 'react';
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { store } from './app/store';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import './index.css';
-import 'mdb-react-ui-kit/dist/css/mdb.min.css';
-
-const container = document.getElementById('root')!;
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "./index.css";
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Favorite from "./pages/favorite";
+const container = document.getElementById("root")!;
 const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <Router>
+
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/favorites" element={<Favorite />} />
+        </Routes>
+
+      </Router>
     </Provider>
   </React.StrictMode>
 );

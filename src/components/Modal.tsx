@@ -1,4 +1,5 @@
 import React from "react";
+import AppContext from "../context";
 
 interface PropsFunction {
   toggleShow: (item: any) => void;
@@ -6,6 +7,10 @@ interface PropsFunction {
   setShow: any;
   show: boolean;
 }
+
+type ContextType = {  
+  onAddToFavorite: (item: any) => void;
+};
 
 const Modal: React.FC<PropsFunction> = ({
   toggleShow,
@@ -25,6 +30,7 @@ const Modal: React.FC<PropsFunction> = ({
     MDBListGroup,
     MDBListGroupItem,
   } = mdbreact;
+  const {onAddToFavorite} = React.useContext(AppContext) as ContextType;
   return (
     <>
       <MDBModal show={show} setShow={setShow}>
@@ -52,6 +58,7 @@ const Modal: React.FC<PropsFunction> = ({
               </div>
             </MDBModalBody>
             <MDBModalFooter>
+              <MDBBtn color="secondary" onClick={() =>console.log(recipe)}>❤️</MDBBtn>
               <MDBBtn color="secondary" onClick={toggleShow}>
                 Close
               </MDBBtn>
